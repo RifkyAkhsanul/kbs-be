@@ -7,12 +7,13 @@ import (
 	"os"
 )
 
+var server = "kbs-data.database.windows.net"
+var port = 1433
+var user = "kbs-data"
+var database = "kbs-data"
+
 func NewDriver() (*sql.DB, error) {
-	server := os.Getenv("server")
-	user := os.Getenv("user")
 	password := os.Getenv("password")
-	port := os.Getenv("port")
-	database := os.Getenv("database")
 
 	con := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%d;database=%s;", server, user, password, port, database)
 	db, err := sql.Open("sqlserver", con)
