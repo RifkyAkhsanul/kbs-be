@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+
+	_ "github.com/microsoft/go-mssqldb"
 )
 
 var server = "kbs-data.database.windows.net"
