@@ -13,7 +13,7 @@ var user = "kbs-data"
 var database = "kbs-data"
 
 func NewDriver() (*sql.DB, error) {
-	password := os.Getenv("password")
+	password := os.Getenv("PASSWORD")
 
 	con := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%d;database=%s;", server, user, password, port, database)
 	db, err := sql.Open("sqlserver", con)
