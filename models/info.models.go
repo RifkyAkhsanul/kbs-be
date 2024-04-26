@@ -7,17 +7,17 @@ import (
 )
 
 type Info struct {
-	Id          int    `json:"id"`
-	NamaSpesies string `json:"namaspesies"`
-	KoordinatX  int    `json:"koordinatx"`
-	KoordinatY  int    `json:"koordinaty"`
-	Status      string `json:"status"`
-	FunFact     string `json:"funfact"`
-	Program     string `json:"program"`
-	Dampak      string `json:"dampak"`
-	Games       string `json:"games"`
-	Jawaban     string `json:"jawaban"`
-	Dikunjungi  bool   `json:"dikunjungi"`
+	Id          int     `json:"id"`
+	NamaSpesies string  `json:"namaspesies"`
+	KoordinatX  float64 `json:"koordinatx"`
+	KoordinatY  float64 `json:"koordinaty"`
+	Status      string  `json:"status"`
+	FunFact     string  `json:"funfact"`
+	Program     string  `json:"program"`
+	Dampak      string  `json:"dampak"`
+	Games       string  `json:"games"`
+	Jawaban     string  `json:"jawaban"`
+	Dikunjungi  bool    `json:"dikunjungi"`
 }
 
 func GetInfo() (Response, error) {
@@ -30,7 +30,7 @@ func GetInfo() (Response, error) {
 		return res, err
 	}
 
-	sqlstatement := "SELECT + FROM info"
+	sqlstatement := "SELECT * FROM info"
 
 	rows, err := cons.Query(sqlstatement)
 	defer rows.Close()
