@@ -67,17 +67,11 @@ func GetInfofromID(id int) (Response, error) {
 	con, err := db.NewDriver()
 
 	sqlStatement := "SELECT * FROM info WHERE id = ?"
-
-	stmt, err := con.Prepare(sqlStatement)
+	rows, err := con.Query(sqlStatement, id)
 	if err != nil {
 		return res, err
 	}
-
-	rows, err := stmt.Query(id)
 	defer rows.Close()
-	if err != nil {
-		return res, err
-	}
 
 	for rows.Next() {
 		err = rows.Scan(&obj.Id, &obj.NamaSpesies, &obj.KoordinatX, &obj.KoordinatY, &obj.Status, &obj.FunFact, &obj.Program, &obj.Dampak, &obj.PetaHabitat, &obj.Dikunjungi, &obj.Gambar, &obj.GambarKecil, &obj.BahasaLatin)
