@@ -72,7 +72,7 @@ func GetInfofromID(id int) (Response, error) {
 		return res, err
 	}
 
-	rows, err := stmt.Query(id)
+	rows, err := stmt.Query("@id", id)
 	if err != nil {
 		return res, err
 	}
