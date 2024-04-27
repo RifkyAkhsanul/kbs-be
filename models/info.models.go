@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/RifkyAkhsanul/kbs-be/db"
@@ -65,13 +66,13 @@ func GetInfofromID(id int) (Response, error) {
 
 	con, err := db.NewDriver()
 
-	sqlStatament := "SELECT * FROM info WHERE id=?"
+	sqlStatament := "SELECT * FROM info WHERE id= ? "
 
 	stmt, err := con.Prepare(sqlStatament)
 	if err != nil {
 		return res, err
 	}
-
+	res.Message = fmt.Sprintf("id : %d", id)
 	rows, err := stmt.Query(id)
 	if err != nil {
 		return res, err
@@ -88,7 +89,7 @@ func GetInfofromID(id int) (Response, error) {
 	}
 
 	res.Status = http.StatusOK
-	res.Message = "Inserted"
+	res.Message = fmt.Sprintf("id : %d", id)
 	res.Data = arrobj
 
 	return res, nil

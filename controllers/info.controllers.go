@@ -40,7 +40,7 @@ func GetInfofromID(c echo.Context) error {
 	result, err := models.GetInfofromID(idInt)
 
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error() + "\n" + result.Message})
 	}
 
 	return c.JSON(http.StatusAccepted, result)
