@@ -65,7 +65,7 @@ func GetInfofromID(id int) (Response, error) {
 
 	con, err := db.NewDriver()
 
-	sqlStatament := "SELECT * FROM info WHERE id=?"
+	sqlStatament := "SELECT * FROM info WHERE id=@id"
 
 	stmt, err := con.Prepare(sqlStatament)
 	if err != nil {
