@@ -55,3 +55,39 @@ func GetInfo() (Response, error) {
 
 	return res, nil
 }
+
+func GetInfofromID(id int) (Response, error) {
+	var obj Info
+	var arrobj []Info
+	var res Response
+
+	con, err := db.NewDriver()
+
+	sqlStatament := "SELECT * FROM info WHERE id=?"
+
+	stmt, err := con.Prepare(sqlStatament)
+	if err != nil {
+		return res, err
+	}
+
+	rows, err := stmt.Query(id)
+	if err != nil {
+		return res, err
+	}
+
+	for rows.Next() {
+		err = rows.Scan(&obj.Id, &obj.NamaSpesies, &obj.KoordinatX, &obj.KoordinatY, &obj.Status, &obj.FunFact, &obj.Program, &obj.Dampak, &obj.Games, &obj.Jawaban, &obj.Dikunjungi)
+
+		if err != nil {
+			return res, err
+		}
+
+		arrobj = append(arrobj, obj)
+	}
+
+	res.Status = http.StatusOK
+	res.Message = "Inserted"
+	res.Data = arrobj
+
+	return res, nil
+}
