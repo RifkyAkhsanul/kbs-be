@@ -1,6 +1,7 @@
 package models
 
 import (
+	"database/sql"
 	"fmt"
 	"net/http"
 
@@ -68,23 +69,24 @@ func GetInfofromID(id int) (Response, error) {
 	if err != nil {
 		return res, err
 	}
-	defer con.Close()
+	defer con.Close() // Pastikan koneksi ditutup setelah selesai menggunakan
 
-	sqlStatement := "SELECT * FROM info WHERE id = ?"
-	rows, err := con.Query(sqlStatement, id)
+	sqlStatement := "SELECT * FROM info WHERE id = @id"
+	rows, err := con.Query(sqlStatement, sql.Named("id", id))
 	if err != nil {
 		return res, err
 	}
-	defer rows.Close()
+	defer rows.Close() // Pastikan baris hasil ditutup setelah selesai menggunakan
 
 	for rows.Next() {
-		err = rows.Scan(&obj.Id, &obj.NamaSpesies, &obj.KoordinatX, &obj.KoordinatY, &obj.Status, &obj.FunFact, &obj.Program, &obj.Dampak, &obj.PetaHabitat, &obj.Dikunjungi, &obj.Gambar, &obj.GambarKecil, &obj.BahasaLatin)
-
+		err := rows.Scan(&obj.Id, &obj.NamaSpesies, &obj.KoordinatX, &obj.KoordinatY, &obj.Status, &obj.FunFact, &obj.Program, &obj.Dampak, &obj.PetaHabitat, &obj.Dikunjungi, &obj.Gambar, &obj.GambarKecil, &obj.BahasaLatin)
 		if err != nil {
 			return res, err
 		}
-
 		arrobj = append(arrobj, obj)
+	}
+	if err := rows.Err(); err != nil {
+		return res, err
 	}
 
 	res.Status = http.StatusOK
