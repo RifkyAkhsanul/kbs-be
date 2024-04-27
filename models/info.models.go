@@ -63,16 +63,16 @@ func GetInfofromID(id int) (Response, error) {
 	var obj Info
 	var arrobj []Info
 	var res Response
-
+	res.Message = fmt.Sprintf("id : %d", id)
 	con, err := db.NewDriver()
 
-	sqlStatament := "SELECT * FROM info WHERE id= ? "
+	sqlStatement := "SELECT * FROM info WHERE id = ?"
 
-	stmt, err := con.Prepare(sqlStatament)
+	stmt, err := con.Prepare(sqlStatement)
 	if err != nil {
 		return res, err
 	}
-	res.Message = fmt.Sprintf("id : %d", id)
+
 	rows, err := stmt.Query(id)
 	if err != nil {
 		return res, err
