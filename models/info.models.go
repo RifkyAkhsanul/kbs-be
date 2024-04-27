@@ -9,7 +9,6 @@ import (
 type Info struct {
 	Id          int     `json:"id"`
 	NamaSpesies string  `json:"namaspesies"`
-	BahasaLatin string  `json:"bahasa_latin"`
 	KoordinatX  float64 `json:"koordinatx"`
 	KoordinatY  float64 `json:"koordinaty"`
 	Status      string  `json:"status"`
@@ -20,6 +19,7 @@ type Info struct {
 	Dikunjungi  bool    `json:"dikunjungi"`
 	Gambar      string  `json:"gambar"`
 	GambarKecil string  `json:"gambar_kecil"`
+	BahasaLatin string  `json:"bahasa_latin"`
 }
 
 func GetInfo() (Response, error) {
@@ -42,7 +42,7 @@ func GetInfo() (Response, error) {
 	}
 
 	for rows.Next() {
-		err = rows.Scan(&obj.Id, &obj.NamaSpesies, &obj.BahasaLatin, &obj.KoordinatX, &obj.KoordinatY, &obj.Status, &obj.FunFact, &obj.Program, &obj.Dampak, &obj.PetaHabitat, &obj.Dikunjungi, &obj.Gambar, &obj.GambarKecil)
+		err = rows.Scan(&obj.Id, &obj.NamaSpesies, &obj.KoordinatX, &obj.KoordinatY, &obj.Status, &obj.FunFact, &obj.Program, &obj.Dampak, &obj.PetaHabitat, &obj.Dikunjungi, &obj.Gambar, &obj.GambarKecil, &obj.BahasaLatin)
 
 		if err != nil {
 			return res, err
@@ -78,7 +78,7 @@ func GetInfofromID(id int) (Response, error) {
 	}
 
 	for rows.Next() {
-		err = rows.Scan(&obj.Id, &obj.NamaSpesies, &obj.BahasaLatin, &obj.KoordinatX, &obj.KoordinatY, &obj.Status, &obj.FunFact, &obj.Program, &obj.Dampak, &obj.PetaHabitat, &obj.Dikunjungi, &obj.Gambar, &obj.GambarKecil)
+		err = rows.Scan(&obj.Id, &obj.NamaSpesies, &obj.KoordinatX, &obj.KoordinatY, &obj.Status, &obj.FunFact, &obj.Program, &obj.Dampak, &obj.PetaHabitat, &obj.Dikunjungi, &obj.Gambar, &obj.GambarKecil, &obj.BahasaLatin)
 
 		if err != nil {
 			return res, err
