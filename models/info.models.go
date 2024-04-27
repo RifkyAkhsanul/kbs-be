@@ -65,6 +65,10 @@ func GetInfofromID(id int) (Response, error) {
 	var res Response
 	res.Message = fmt.Sprintf("id : %d", id)
 	con, err := db.NewDriver()
+	if err != nil {
+		return res, err
+	}
+	defer con.Close()
 
 	sqlStatement := "SELECT * FROM info WHERE id = ?"
 	rows, err := con.Query(sqlStatement, id)
