@@ -9,6 +9,7 @@ import (
 type Info struct {
 	Id          int     `json:"id"`
 	NamaSpesies string  `json:"namaspesies"`
+	BahasaLatin string  `json:"bahasa_latin"`
 	KoordinatX  float64 `json:"koordinatx"`
 	KoordinatY  float64 `json:"koordinaty"`
 	Status      string  `json:"status"`
@@ -42,7 +43,7 @@ func GetInfo() (Response, error) {
 	}
 
 	for rows.Next() {
-		err = rows.Scan(&obj.Id, &obj.NamaSpesies, &obj.KoordinatX, &obj.KoordinatY, &obj.Status, &obj.FunFact, &obj.Program, &obj.Dampak, &obj.Games, &obj.Jawaban, &obj.Dikunjungi, &obj.Gambar, &obj.GambarKecil)
+		err = rows.Scan(&obj.Id, &obj.NamaSpesies, &obj.BahasaLatin, &obj.KoordinatX, &obj.KoordinatY, &obj.Status, &obj.FunFact, &obj.Program, &obj.Dampak, &obj.Games, &obj.Jawaban, &obj.Dikunjungi, &obj.Gambar, &obj.GambarKecil)
 
 		if err != nil {
 			return res, err
@@ -78,7 +79,7 @@ func GetInfofromID(id int) (Response, error) {
 	}
 
 	for rows.Next() {
-		err = rows.Scan(&obj.Id, &obj.NamaSpesies, &obj.KoordinatX, &obj.KoordinatY, &obj.Status, &obj.FunFact, &obj.Program, &obj.Dampak, &obj.Games, &obj.Jawaban, &obj.Dikunjungi, &obj.Gambar, &obj.GambarKecil)
+		err = rows.Scan(&obj.Id, &obj.NamaSpesies, &obj.BahasaLatin, &obj.KoordinatX, &obj.KoordinatY, &obj.Status, &obj.FunFact, &obj.Program, &obj.Dampak, &obj.Games, &obj.Jawaban, &obj.Dikunjungi, &obj.Gambar, &obj.GambarKecil)
 
 		if err != nil {
 			return res, err
