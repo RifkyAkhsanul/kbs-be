@@ -16,8 +16,7 @@ type Info struct {
 	FunFact     string  `json:"funfact"`
 	Program     string  `json:"program"`
 	Dampak      string  `json:"dampak"`
-	Games       string  `json:"games"`
-	Jawaban     string  `json:"jawaban"`
+	PetaHabitat string  `json:"peta_habitat"`
 	Dikunjungi  bool    `json:"dikunjungi"`
 	Gambar      string  `json:"gambar"`
 	GambarKecil string  `json:"gambar_kecil"`
@@ -43,7 +42,7 @@ func GetInfo() (Response, error) {
 	}
 
 	for rows.Next() {
-		err = rows.Scan(&obj.Id, &obj.NamaSpesies, &obj.BahasaLatin, &obj.KoordinatX, &obj.KoordinatY, &obj.Status, &obj.FunFact, &obj.Program, &obj.Dampak, &obj.Games, &obj.Jawaban, &obj.Dikunjungi, &obj.Gambar, &obj.GambarKecil)
+		err = rows.Scan(&obj.Id, &obj.NamaSpesies, &obj.BahasaLatin, &obj.KoordinatX, &obj.KoordinatY, &obj.Status, &obj.FunFact, &obj.Program, &obj.Dampak, &obj.PetaHabitat, &obj.Dikunjungi, &obj.Gambar, &obj.GambarKecil)
 
 		if err != nil {
 			return res, err
@@ -79,7 +78,7 @@ func GetInfofromID(id int) (Response, error) {
 	}
 
 	for rows.Next() {
-		err = rows.Scan(&obj.Id, &obj.NamaSpesies, &obj.BahasaLatin, &obj.KoordinatX, &obj.KoordinatY, &obj.Status, &obj.FunFact, &obj.Program, &obj.Dampak, &obj.Games, &obj.Jawaban, &obj.Dikunjungi, &obj.Gambar, &obj.GambarKecil)
+		err = rows.Scan(&obj.Id, &obj.NamaSpesies, &obj.BahasaLatin, &obj.KoordinatX, &obj.KoordinatY, &obj.Status, &obj.FunFact, &obj.Program, &obj.Dampak, &obj.PetaHabitat, &obj.Dikunjungi, &obj.Gambar, &obj.GambarKecil)
 
 		if err != nil {
 			return res, err
