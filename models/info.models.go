@@ -74,6 +74,7 @@ func GetInfofromID(id int) (Response, error) {
 	}
 
 	rows, err := stmt.Query(id)
+	defer rows.Close()
 	if err != nil {
 		return res, err
 	}
